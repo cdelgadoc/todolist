@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: pycero_backend
+    build:
+      context: ./python_backend
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  frontend:
+    container_name: pycero_frontend
+    build:
+      context: ./angular_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+  db:
+    container_name: pycero_db
+    build:
+      context: ./postgres_database
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: isis4426
+      POSTGRES_PASSWORD: isis4426
+      POSTGRES_DB: proyecto_cero
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+    driver: local

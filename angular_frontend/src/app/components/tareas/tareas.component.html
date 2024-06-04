@@ -1,0 +1,57 @@
+<div class="card-body">
+    <div class="modal-header text-center">
+        <h3 class="modal-title" id="exampleModalLabel">Agregar Tarea</h3>
+    </div>
+    <form [formGroup]="tareaForm" role="form" class="text-start">
+      <div class="input-group input-group-outline my-3">
+        <div class="input-group input-group-outline my-3">
+          <input id="tarea" type="text" formControlName="tarea" class="form-control" placeholder="Tarea" />
+        </div>
+        <div>
+          <div *ngIf="tarea?.errors?.['required'] && (tarea?.dirty || tarea?.touched)" class="text-danger">La tarea es requerida .</div>
+          <div *ngIf="tarea?.errors?.['minlength'] && (tarea?.dirty || tarea?.touched)" class="text-danger">La tarea debe tener al menos 3 caracteres.</div>
+          <div *ngIf="tarea?.errors?.['maxlength'] && (tarea?.dirty || tarea?.touched)" class="text-danger">La tarea debe tener máximo 50 caracteres.</div>
+        </div>
+      </div>
+
+      <div class="input-group input-group-outline my-3">
+        <label for="fechaFinalizacion" style="font-weight: bold;">Fecha de Finalizacion</label>
+        <div class="input-group input-group-outline my-3">
+          <input id="fechaFinalizacion" type="date" formControlName="fechaFinalizacion" class="form-control" placeholder="Fecha de Finalizacion" />
+        </div>
+        <div>
+          <div *ngIf="fechaFinalizacion?.errors?.['required'] && (fechaFinalizacion?.dirty || fechaFinalizacion?.touched)" class="text-danger">La Fecha de Finalización es requerida.</div>
+        </div>
+      </div>
+
+      <div class="input-group input-group-outline my-3">
+        <div class="input-group input-group-outline my-3">
+          <select formControlName="estado" class="form-control">
+            <option value="" disabled selected>Seleccione el Estado</option>
+            <option value="sin empezar">Sin Empezar</option>
+            <option value="empezada">Empezada</option>
+            <option value="finalizada">Finalizada</option>
+          </select>
+        </div>
+        <div>
+          <div *ngIf="estado?.errors?.['required'] && (estado?.dirty || estado?.touched)" class="text-danger">El estado es requerido.</div>
+        </div>
+      </div>
+      
+      <div class="input-group input-group-outline my-3">
+        <div class="input-group input-group-outline my-3">
+          <select formControlName="categoria" class="form-control">
+            <option value="" disabled selected>Seleccione la Categoria</option>
+            <option *ngFor="let categoria of getCategorias()" [ngValue]="categoria.id">{{ categoria.nombre }}</option>
+          </select>
+        </div>
+        <div>
+          <div *ngIf="categoria?.errors?.['required'] && (categoria?.dirty || categoria?.touched)" class="text-danger">La categoria es requerida.</div>
+        </div>
+      </div>
+      
+      <div class="text-center">
+        <button type="button" class="btn bg-gradient-primary w-100 my-4 mb-2" (click)="guardarTarea()" [disabled]="!tareaForm.valid">Guardar Tarea</button>
+      </div>
+    </form>
+  </div>

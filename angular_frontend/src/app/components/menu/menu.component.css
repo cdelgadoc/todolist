@@ -1,0 +1,13 @@
+#sidenav-main {
+    z-index: 1000; /* Ajusta este valor según sea necesario para que esté por debajo del modal */
+  }
+  
+  .modal {
+    z-index: 2000; /* Ajusta este valor según sea necesario para que esté por encima de la barra lateral */
+  }
+  
+/* En tu archivo de estilos global o en el componente específico */
+#resultsModal .modal-dialog {
+  width: 45% !important;
+  max-width: 45% !important;
+}

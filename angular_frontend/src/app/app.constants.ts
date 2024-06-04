@@ -1,0 +1,5 @@
+export const LOGIN_API_URL = "http://localhost:8000/usuarios/iniciar-sesion"
+export const USER_API_URL ="http://localhost:8000/usuarios/"
+export const CATEGORY_API_URL ="http://localhost:8000/categorias/"
+export const TASK_API_URL ="http://localhost:8000/tareas/"
+export const TASK_USER_API_URL ="http://localhost:8000/tareas/usuario/"
